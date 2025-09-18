@@ -67,6 +67,11 @@ export default function ChatbotPage() {
           timestamp: new Date()
         }
         setMessages(prev => [...prev, aiResponse])
+        
+        // 시뮬레이션 모드 알림 (개발 환경에서만)
+        if (data.mode === 'simulation' && process.env.NODE_ENV === 'development') {
+          console.log('현재 시뮬레이션 모드로 동작 중입니다. OpenAI API 키를 설정하면 실제 AI와 대화할 수 있습니다.')
+        }
       } else {
         // 에러 처리
         const errorMessage: Message = {
@@ -210,6 +215,9 @@ export default function ChatbotPage() {
               </p>
               <p className="mt-2">
                 <strong>24시간 위기상담전화: 1393</strong>
+              </p>
+              <p className="mt-2 text-xs text-sage-600">
+                💡 현재 시뮬레이션 모드로 동작 중입니다. 실제 AI 연동을 위해서는 OpenAI API 키가 필요합니다.
               </p>
             </div>
           </div>
